@@ -56,14 +56,17 @@ schema.org. http://www.w3.org/wiki/WebSchemas/SchemaDotOrgProposals
 
 
 * http://schema.org/Thing
-* http://schema.org/CreativeWork
 
-  * http://schema.org/WebPage
-  * http://schema.org/CollectionPage
-  * http://schema.org/SearchResultsPage
+  * http://schema.org/CreativeWork
 
-* http://schema.org/SoftwareApplication
-* http://schema.org/WebApplication
+    * http://schema.org/WebPage
+
+      * http://schema.org/CollectionPage
+      * http://schema.org/SearchResultsPage
+
+    * http://schema.org/SoftwareApplication
+
+      * http://schema.org/WebApplication
 
 
 
