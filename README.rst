@@ -3,6 +3,8 @@ ldpnotes
 ========
 Linked Data Platform notes, ontologies, and resources.
 
+.. contents::
+
 Re: Proposal to close ISSUE-19: Adressing more error cases, as is
 -------------------------------------------------------------------
 Impetus
@@ -35,7 +37,7 @@ ______________
 - Exceptions should contain enough information to diagnose the problem
 - Most Proxies, balancers, etc. understand HTTP (some HTML)
 - Why would I need to look up the List of HTTP status codes?
-- HTTP 2__ status codes are not errors or exceptions.
+- HTTP 2?? status codes are not errors or exceptions.
 - What to do when status_code != 200 OK
 - What to do when (status_code not in range(200,300))
 
@@ -52,13 +54,16 @@ potentially containing *error message metadata*.
 Beyond that, there is currently no notion of HTTP or an Error message in
 schema.org. http://www.w3.org/wiki/WebSchemas/SchemaDotOrgProposals
 
-    http://schema.org/Thing
-    http://schema.org/CreativeWork
-        http://schema.org/WebPage
-        http://schema.org/CollectionPage
-        http://schema.org/SearchResultsPage
-    http://schema.org/SoftwareApplication
-    http://schema.org/WebApplication
+
+* http://schema.org/Thing
+* http://schema.org/CreativeWork
+
+  * http://schema.org/WebPage
+  * http://schema.org/CollectionPage
+  * http://schema.org/SearchResultsPage
+
+* http://schema.org/SoftwareApplication
+* http://schema.org/WebApplication
 
 
 
