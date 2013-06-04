@@ -1,0 +1,154 @@
+#### http-problem.ttl
+# a conversion of the HTTP Problem JSON schema defined at
+# https://tools.ietf.org/html/draft-nottingham-http-problem-04
+# to RDFS/OWL in Turtle.
+#
+# Changelog
+# -----------
+#
+# 2013-06-05 -- Draft 01
+#
+# * Updated ``rdfs:isDefinedBy`` properties
+# * Updated example ``dct:hasFormat`` values
+# * Updated ``ex:accounts`` value
+# * Added normative references
+# * Added extensively unscoped documentation regarding the domain
+#
+# 2013-06-04 -- Draft 00
+#
+# * Manually generated (rough) Turtle OWL Ontology.
+#
+### <ontology>
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl:  <http://www.w3.org/2002/07/owl#>.
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix dct:  <http://purl.org/dc/terms/>.
+@prefix http:   <http://www.w3.org/TR/HTTP-in-RDF/>.
+@prefix httpsc: <http://www.w3.org/2011/http-statusCodes#>.
+@prefix prob: <http://example.org/ns/prob#>.
+@prefix ex: <http://example.org/ns/example#>.
+
+<http://example.org/ns/prob> a owl:Ontology;
+    dct:title "The Problem Details JSON terms in RDFS+OWL"@en;
+    dct:description "This is a conversion of the terms defined at https://tools.ietf.org/html/draft-nottingham-http-problem-04 to RDFS and OWL."@en;
+    foaf:page <https://tools.ietf.org/html/draft-nottingham-http-problem-04>;
+    rdfs:seeAlso <http://www.w3.org/TR/HTTP-in-RDF/>;
+    dct:hasFormat <http://example.org/ns/prob.ttl>;
+    dct:hasFormat <http://example.org/ns/prob.rdf>;
+    dct:hasFormat <http://example.org/ns/prob.nt>;
+    dct:hasFormat <http://example.org/ns/prob.xml>;
+    dct:hasFormat <http://example.org/ns/prob.json>;
+    dct:hasFormat <http://example.org/ns/prob.jsonld>;
+    dct:source <https://tools.ietf.org/html/draft-nottingham-http-problem-04>;
+    dct:license <https://tools.ietf.org/html/draft-nottingham-http-problem-04>;
+    #dct:valid "2013-06-04"^^xsd:date;
+    .
+
+prob:ProblemType a rdfs:Class;
+    rdfs:label "ProblemType"@en;
+    rdfs:comment "A type of Problem"@en;
+    rdfs:isDefinedBy <http://example.org/ns/prob>;
+    .
+
+prob:Problem a rdfs:Class;
+    rdfs:label "Problem"@en;
+    rdfs:comment "An instance of a Problem"@en;
+    rdfs:isDefinedBy <http://example.org/ns/prob>;
+    .
+
+prob:problemType a rdf:Property;
+    rdfs:label "Problem Type"@en;
+    rdfs:comment "The ProblemType of the Problem"@en;
+    rdfs:domain prob:Problem;
+    rdfs:range  prob:ProblemType; 
+    rdfs:isDefinedBy <http://example.org/ns/prob>;
+    .
+
+prob:title a rdf:Property;
+    rdfs:label "Title"@en;
+    rdfs:comment "The title of the Problem"@en;
+    rdfs:domain prob:ProblemType;
+    rdfs:range xsd:string;
+    rdfs:isDefinedBy <http://example.org/ns/prob>;
+    #? ... rdfs:subPropertyOf dct:title;
+    #? ... rdfs:subPropertyOf rdfs:label;
+    .
+
+prob:detail a rdf:Property;
+    rdfs:label "Problem Detail"@en;
+    rdfs:comment "The details of the problem"@en;
+    rdfs:domain [ a owl:Class; owl:UnionOf (prob:ProblemType prob:Problem) ];
+    rdfs:range xsd:string;
+    rdfs:isDefinedBy <http://example.org/ns/prob>;
+    #? ... rdfs:subPropertyOf http:reasonPhrase;
+    .
+
+prob:httpStatus a rdf:Property;
+    rdfs:label "HTTP Status Code"@en;
+    rdfs:comment "The type of the problem"@en;
+    rdfs:domain prob:ProblemType;
+    rdfs:range xsd:integer;
+    rdfs:isDefinedBy <http://example.org/ns/prob>;
+    #? ... rdfs:subPropertyOf http:statusCodeValue; ?
+    .
+
+
+#</ontology>
+
+#<resources>
+### Example: HTTP Error 418
+
+<http://example.org/error/418> a prob:ProblemType;
+    rdfs:isDefinedBy <>;
+    prob:title  "This is a 418 error"@en;
+    prob:detail "I am a teapot"@en;
+    prob:httpStatus 418;
+
+    #? a http:Response;
+    #? a httpsc:StatusCode4xx;
+    #? dct:title  "This is a 418 error"@en;
+    #? rdfs:label "This is a 418 error"@en;
+    #? http:statusCodeValue 418;
+    #? http:reasonPhrase "I am a teapot"@en;
+
+    .
+
+<http://example.org/errors/id/xyz123> a prob:Problem;
+    prob:problemType <http://example.org/error/418>;
+    prob:detail "I am a special teapot."@en;
+    .
+
+
+### conversion of current example
+# HTTP/1.1 403 Forbidden
+# Content-Type: application/api-problem+json
+# Content-Language: en
+#
+# {
+#  "problemType": "http://example.com/probs/out-of-credit",
+#  "title": "You do not have enough credit.",
+#  "detail": "Your current balance is 30, but that costs 50.",
+#  "problemInstance": "http://example.net/account/12345/msgs/abc",
+#  "balance": 30,
+#  "accounts": ["http://example.net/account/12345",
+#               "http://example.net/account/67890"]
+# }
+
+
+<http://example.com/probs/out-of-credit> a prob:ProblemType;
+    prob:title "You do not have enough credit"@en;
+    prob:httpStatus 403;
+    .
+
+<http://example.com/account/12345/msgs/abc> a prob:Problem;
+    prob:problemType <http://example.com/probs/out-of-credit>;
+    prob:detail "Your current balance is 30, but that costs 50"@en;
+    ex:balance 30;
+    ex:accounts (
+        <http://example.net/account/12345>
+        <http://example.net/account/67890> );
+    .
+
+#</resources>

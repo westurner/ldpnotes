@@ -1,36 +1,15 @@
+
 ldpnotes
 ========
+Linked Data Platform notes, ontologies, and resources.
 
-
-Changelog
-----------
-#
-## 2013-06-05 -- Draft 01
-#
-# * Updated ``rdfs:isDefinedBy`` properties
-# * Updated example ``dct:hasFormat`` values 
-# * Updated ``ex:accounts`` value
-# * Added normative references
-# * Added extensively unscoped documentation regarding the domain
-#
-## 2013-06-04 -- Draft 00 
-#
-# * Manually generated (rough) Turtle OWL Ontology.
-#
-
-Notes
--------
-References
-___________
-- http://schema.rdfs.org/all.ttl (CCSA)
-- https://tools.ietf.org/html/draft-nottingham-http-problem-04
-- http://www.w3.org/TR/HTTP-in-RDF/
-- http://www.w3.org/2011/http-statusCodes#
-- http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html 
-- https://en.wikipedia.org/wiki/List_of_HTTP_status_codes 
-- http://answers.semanticweb.com/questions/2817/syntax-highlighting-for-turtle 
-- http://stackoverflow.com/questions/3669407/convert-xsd-to-rdf-schema
-
+Re: Proposal to close ISSUE-19: Adressing more error cases, as is
+-------------------------------------------------------------------
+Impetus
+_________
+* http://lists.w3.org/Archives/Public/public-ldp-wg/2013May/0234.html
+* http://lists.w3.org/Archives/Public/public-ldp/2013Jun/thread.html#msg6
+* **https://github.com/westurner/ldpnotes/blob/master/http-problem.ttl**
 
 
 Interaction Sequence
@@ -62,9 +41,9 @@ ______________
 
 
 Mapping to Existing Ontologies
---------------------------------
+________________________________
 Mapping to schema.org
-_______________________
+~~~~~~~~~~~~~~~~~~~~~~~
 
 A ``WebApplication`` ``SoftwareApplication`` returns a ``WebPage``
 (which could be a ``CollectionPage``, a ``SearchResultsPage``, a ``...``)
@@ -84,12 +63,22 @@ schema.org. http://www.w3.org/wiki/WebSchemas/SchemaDotOrgProposals
 
 
 Mapping to HTTP-in-RDF
-__________________________________________
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 http://w3.org/TR/HTTP-in-RDF/
-
 
 It would be convenient if ``http:httpStatusCode`` etc had an ``rdfs:domain``
 of ``rdfs:Resource`` and/or ``prob:Problem`` and/or ``prob:ProblemType``
 were just ``http:Responses``.
 
+
+References
+___________
+- http://schema.rdfs.org/all.ttl (CCSA)
+- https://tools.ietf.org/html/draft-nottingham-http-problem-04
+- http://www.w3.org/TR/HTTP-in-RDF/
+- http://www.w3.org/2011/http-statusCodes#
+- http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+- https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+- http://answers.semanticweb.com/questions/2817/syntax-highlighting-for-turtle 
+- http://stackoverflow.com/questions/3669407/convert-xsd-to-rdf-schema
