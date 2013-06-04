@@ -1,4 +1,0 @@
-ldpnotes
-========
-
-LDP notes
