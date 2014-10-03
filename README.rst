@@ -85,7 +85,7 @@ ___________
 - http://schema.rdfs.org/all.ttl (CCSA)
 - https://tools.ietf.org/html/draft-nottingham-http-problem-04
 - http://www.w3.org/TR/HTTP-in-RDF/
-- http://www.w3.org/2011/http-statusCodes#
+- `<http://www.w3.org/2011/http-statusCodes#>`_
 - http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
 - https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
 - http://answers.semanticweb.com/questions/2817/syntax-highlighting-for-turtle 
